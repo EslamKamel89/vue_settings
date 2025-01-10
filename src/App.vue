@@ -8,15 +8,16 @@
       </ul>
     </nav>
     <div class="">
-      <transition mode="out-in">
+      <FadeTransition>
         <component class="" :is="currentComponent" />
-      </transition>
+      </FadeTransition>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
+import FadeTransition from './components/FadeTransition.vue';
 import GeneralSettings from './components/GeneralSettings.vue';
 import NotificationsSettings from './components/NotificationsSettings.vue';
 import PrivacySettings from './components/PrivacySettings.vue';
@@ -34,15 +35,3 @@ const currentComponent = computed(() => {
   return pr(tabs.find((tab: Tab) => tab.key == currentTab.value)?.component, 'current component');
 });
 </script>
-
-<style scoped>
-.v-enter-active,
-.v-leave-active {
-  transition: all 0.5s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
-</style>
