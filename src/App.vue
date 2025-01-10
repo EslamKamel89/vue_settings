@@ -7,20 +7,42 @@
         </li>
       </ul>
     </nav>
+    <div class="">
+      <transition mode="out-in">
+        <component class="" :is="currentComponent" />
+      </transition>
+    </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import GeneralSettings from './components/GeneralSettings.vue';
+import NotificationsSettings from './components/NotificationsSettings.vue';
+import PrivacySettings from './components/PrivacySettings.vue';
 import TabLink from './components/TabLink.vue';
+import pr from './pr';
 import type { Tab, TabKey } from './types';
 
 const tabs: Tab[] = [
-  { label: 'General', key: 'General' },
-  { label: 'Notifications', key: 'Notifications' },
-  { label: 'Privacy', key: 'Privacy' },
+  { label: 'General', key: 'General', component: GeneralSettings },
+  { label: 'Notifications', key: 'Notifications', component: NotificationsSettings },
+  { label: 'Privacy', key: 'Privacy', component: PrivacySettings },
 ];
 const currentTab = ref<TabKey>('General');
+const currentComponent = computed(() => {
+  return pr(tabs.find((tab: Tab) => tab.key == currentTab.value)?.component, 'current component');
+});
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>
