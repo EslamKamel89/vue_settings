@@ -9,7 +9,9 @@
     </nav>
     <div class="">
       <FadeTransition>
-        <component class="" :is="currentComponent" />
+        <keep-alive>
+          <component class="" :is="currentComponent" />
+        </keep-alive>
       </FadeTransition>
     </div>
   </main>
