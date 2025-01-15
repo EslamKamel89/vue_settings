@@ -13,6 +13,7 @@
           <component class="" :is="currentComponent" />
         </keep-alive>
       </FadeTransition>
+      <NotificationList />
     </div>
   </main>
 </template>
@@ -24,6 +25,7 @@ import GeneralSettings from './components/GeneralSettings.vue';
 import NotificationsSettings from './components/NotificationsSettings.vue';
 import PrivacySettings from './components/PrivacySettings.vue';
 import TabLink from './components/TabLink.vue';
+import NotificationList from './composables/NotificationList.vue';
 import pr from './pr';
 import type { Tab, TabKey } from './types';
 
